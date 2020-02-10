@@ -4,18 +4,14 @@ const express = require('express')
 const app = express();
 const port = 3000;
 
-app.get('/', (req,res) => res.send('hello world'))
-app.get('/about', (req,res) => res.send('hello about'))
-app.get('/contact', (req,res) => {
-app.get('/activities', (req,res) => {
-console.log("still working hehe")
-res.status(300).send('activiteiten');
-})
-res.write('<h1>hello contact</h1>')
-});
-app.get('*', (req,res) => {
-res.status(404).send("404 page");
-console.log("I always should be at the end, otherwise I will be annoying")
-});
+app.get('/', (req,res) => res.send('hello world'));
 
-app.listen(port, () => console.log( 'example app listenng on port $[port]!'))
+console.log(__dirname + '/contact.html');
+app.use('/', express.static(__dirname + '/static'));
+app.use('/audio', express.static(__dirname + '/audio'));
+app.use('/gif', express.static(__dirname + '/images'));
+app.get('/about', (req,res) => res.send('hello about'));
+app.get('/activities', (req,res) => res.send('activiteiten'));
+app.get('*', (req,res) => res.status(404).send("This is my 404 page"));
+
+app.listen(port, () => console.log( 'example app listening on port ' + port))
