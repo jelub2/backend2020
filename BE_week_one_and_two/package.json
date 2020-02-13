@@ -2,14 +2,15 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "used for backend",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "nodemon index.js",
-    "start": "node index.js"
+    "test": "nodemon main",
+    "start": "node main"
   },
   "author": "Jelmer Lubberts",
   "license": "ISC",
   "dependencies": {
+    "ejs": "^3.0.1",
     "express": "^4.17.1"
   },
   "devDependencies": {
