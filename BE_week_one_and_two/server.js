@@ -4,19 +4,48 @@ const express = require('express')
 const app = express();
 const port = 3000;
 const path = require('path');
+const router = express.Router();
+
+router.use((req,res,next) => {
+
+
+  next();
+})
+
+
+// use router instead
+router.get('/', (req, res) => res.render(path.join(__dirname + '/views/pages/index.ejs')));
+
+router.get('/about', (req, res) => res.render(path.join(__dirname + '/views/pages/about.ejs')));
+
+router.param('name', (req,res,next,name) => {
+  if(name != 'jelmer'){
+    name = "different"
+  }
+
+req.name = name;
+next("Hello  " + name);
+})
+
+//route with parameter
+router.get('/hello/:name', (req, res) => res.send('hello ' + name + '!'))
+
+//Apply the routes
+app.use('/', router);
+
+
+
 
 app
   .set('view engine', 'ejs')//set the view engine to ejs
-  .get('/', (req, res) => res.render('pages/index'))//index_page
-  .get('/about', (req,res)=> res.render('pages/about'))//about_page
-  .listen(port)
- //  .use('/', express.static(path.join(__dirname + '/static')))
- //  .get('/', (req,res) => res.send('hello world'))
- //  .get('/about', (req,res) => res.send('hello about'))
- //  .use('/audio', express.static(__dirname + '/audio'))
- //  .use('/images', express.static(__dirname + '/images'))
- // // app.get('/activities', (req,res) => res.send('activiteiten'))
- // // app.get('*', (req,res) => res.status(404).send("This is my 404 page"))
+  .use('/contact', express.static(path.join(__dirname + '/static/contact.html')))//contactpage
+  .use('/profile', express.static(path.join(__dirname + '/static/profile.html')))//contactpage
+  .use('/mp3', express.static(path.join(__dirname + '/audio/sample.mp3')))//audio folder
+  .use('/inception', express.static(__dirname + '/images/inception.gif'))
+  .get('*', (req, res) => res.send('404'))//index_page
 
 
+//set up the port for localhost
+  app.listen(port)
+//log into the terminal to see if everything is allright
 console.log(port + " is the way to go")
