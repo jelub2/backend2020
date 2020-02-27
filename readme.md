@@ -22,6 +22,9 @@ EJS-templating:
 + [title]https://scotch.io/tutorials/use-ejs-to-template-your-node-application
 + [title]https://ejs.co/
 
+Waarom zou iik routes gebruiken en niet app.get?
+Theorie: DRY (Do not repeat yourself)
+
 ## week 3
 
 ## week 4

@@ -11,8 +11,15 @@
   <li>https://scotch.io/tutorials/use-ejs-to-template-your-node-application</li>
   <li>https://ejs.co/</li>
 </ul>
-
+<%- include ('../partials/form') %>
 </main>
+
+<ul>
+
+    <li><%= data.name %></li>
+    <li><%= data.day %></li>
+
+</ul>
 
 <!-- footer -->
   <%- include ('../partials/footer') %>

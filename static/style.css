@@ -1,0 +1,63 @@
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+}
+
+body{
+  background: #fff;
+}
+
+header{
+  display: flex;
+  background: #e4e4e4;
+  height: 3em;
+  justify-content: space-between;
+}
+
+header > a{
+background: blue;
+}
+
+nav{
+  background: green;
+
+}
+
+nav ul li{
+  display: inline-block;
+}
+
+nav ul li a{
+  width: 100%;
+  height: 100%;
+}
+
+/* activities */
+.activity{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.activity > section{
+  box-shadow: 2px 2px 2px #e6e6e6;
+  padding: 1em;
+  margin: 1em;
+  min-width: 200px;
+  width: 25%;
+  border-radius: 5%;
+}
+
+.activity > section > img{
+  width: 100%;
+  height: 10em;
+}
+
+
+@media screen and (max-width: 960px){
+  nav ul li{
+    display: block;
+  }
+}

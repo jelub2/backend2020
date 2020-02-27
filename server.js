@@ -1,51 +1,39 @@
 // server.js
-
-const express = require('express')
+const express = require('express');
 const app = express();
 const port = 3000;
-const path = require('path');
-const router = express.Router();
-
-router.use((req,res,next) => {
-
-
-  next();
-})
-
-
-// use router instead
-router.get('/', (req, res) => res.render(path.join(__dirname + '/views/pages/index.ejs')));
-
-router.get('/about', (req, res) => res.render(path.join(__dirname + '/views/pages/about.ejs')));
-
-router.param('name', (req,res,next,name) => {
-  if(name != 'jelmer'){
-    name = "different"
-  }
-
-req.name = name;
-next("Hello  " + name);
-})
-
-//route with parameter
-router.get('/hello/:name', (req, res) => res.send('hello ' + name + '!'))
-
-//Apply the routes
-app.use('/', router);
-
-
-
-
-app
-  .set('view engine', 'ejs')//set the view engine to ejs
-  .use('/contact', express.static(path.join(__dirname + '/static/contact.html')))//contactpage
-  .use('/profile', express.static(path.join(__dirname + '/static/profile.html')))//contactpage
-  .use('/mp3', express.static(path.join(__dirname + '/audio/sample.mp3')))//audio folder
-  .use('/inception', express.static(__dirname + '/images/inception.gif'))
-  .get('*', (req, res) => res.send('404'))//index_page
+const fs = require('fs');
+const bodyParser = require('body-parser')
+const data = require('./views/data.json')
 
 
 //set up the port for localhost
-  app.listen(port)
-//log into the terminal to see if everything is allright
-console.log(port + " is the way to go")
+  app.listen(port, () => {
+    console.log(port + " is the way to go")
+  })
+
+//serve the static folder, including CSS, JS
+//and the assets folder with images
+app
+  .use('/static', express.static('static'))
+  .use('/assets', express.static('assets'))
+  .set('view engine', 'ejs')//set the view engine to ejs
+
+//routes
+app //check client request for fun
+  .use((req, res, next) => {
+    console.log('Time: ', Date.now())
+    console.log(req.method + " " + req.originalUrl)
+    next()
+  })
+
+app// define routes
+  .get('/', parseData/*(req, res) => /*{res.render('pages')}*/)
+  .get('/about', (req, res) => {res.render('pages/about')})
+  .get('/activiteiten', (req, res) => {res.render('pages/activiteiten')})
+  .get('/register', (req, res) => {res.render('pages/register')})
+
+function parseData(req, res){
+  res.render('pages', {data:data});
+
+}
