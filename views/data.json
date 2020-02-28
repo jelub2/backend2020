@@ -1,2 +1,14 @@
-{"name": "Wandelen",
- "day": "Maandag"}
+[
+  {
+    "name": "Wandelen",
+    "day": "Maandag"
+  },
+  {
+    "name": "Fietsen",
+    "day": "Dinsdag"
+  },
+  {
+    "name": "Zwemmen",
+    "day": "Woensdag"
+  }
+]

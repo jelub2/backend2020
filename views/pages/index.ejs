@@ -15,9 +15,10 @@
 </main>
 
 <ul>
-
-    <li><%= data.name %></li>
-    <li><%= data.day %></li>
+  <% activiteiten.forEach(function(anyPrm){ %>
+    <li><%= anyPrm.name %></li>
+    <li><%= anyPrm.day %></li>
+  <% }); %>
 
 </ul>
 

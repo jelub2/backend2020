@@ -1,16 +1,10 @@
 // server.js
 const express = require('express');
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 const fs = require('fs');
 const bodyParser = require('body-parser')
 const data = require('./views/data.json')
-
-
-//set up the port for localhost
-  app.listen(port, () => {
-    console.log(port + " is the way to go")
-  })
 
 //serve the static folder, including CSS, JS
 //and the assets folder with images
@@ -34,6 +28,10 @@ app// define routes
   .get('/register', (req, res) => {res.render('pages/register')})
 
 function parseData(req, res){
-  res.render('pages', {data:data});
-
+  res.render('pages', {activiteiten: data});
 }
+
+//set up the port for localhost
+  app.listen(port, () => {
+    console.log(port + " is the way to go")
+  })
