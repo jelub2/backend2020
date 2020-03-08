@@ -4,23 +4,50 @@
     <!-- header -->
   <%- include ('../partials/header') %>
 
-<main>
-  <h1>Index page </h1>
+<main class="index">
+<!--  <h1>Index page </h1>
   <p>With a little help of:</p>
+
 <ul>
   <li>https://scotch.io/tutorials/use-ejs-to-template-your-node-application</li>
   <li>https://ejs.co/</li>
 </ul>
-<%- include ('../partials/form') %>
+
+-->
+
+<section class="hero left">
+  <div class="page-title">
+    <h1>
+      Samen op activiteit?
+    </h1>
+      <a class="CTA" href="#">Login/Registreer</a>
+  </div>
+  <div class="card">
+    <img src="assets/images/placeholder.png" alt="">
+      <h3>Date</h3>
+  </div>
+  <div class="card">
+    <img src="assets/images/placeholder.png" alt="">
+      <h3>Dance</h3>
+  </div>
+  <div class="card">
+  <img src="assets/images/placeholder.png" alt="">
+      <h3>Dine</h3>
+  </div>
+</section>
+
+
 </main>
 
+<!--
 <ul>
   <% activiteiten.forEach(function(anyPrm){ %>
+    <li><%= anyPrm.id %></li>
     <li><%= anyPrm.name %></li>
     <li><%= anyPrm.day %></li>
   <% }); %>
 
 </ul>
-
+-->
 <!-- footer -->
   <%- include ('../partials/footer') %>

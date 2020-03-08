@@ -3,35 +3,117 @@
   margin: 0;
   padding: 0;
   font-size: 16px;
+  font-family: 'Proza Libre', sans-serif;
 }
 
 body{
-  background: #fff;
+  background-color: #00a6e2;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='79' height='79' viewBox='0 0 200 200'%3E%3Cpolygon fill='%231b1464' fill-opacity='0.54' points='100 0 0 100 100 100 100 200 200 100 200 0'/%3E%3C/svg%3E");
+}
+
+h1{
+  font-size: 4em;
+  color: #fff;
+  margin: 32px 0px;
+}
+
+h2{
+  font-size: 2em;
+}
+
+h3{
+  font-size: 1.5em;
 }
 
 header{
-  display: flex;
-  background: #e4e4e4;
-  height: 3em;
+  display:flex;
   justify-content: space-between;
+  background: white;
+  padding: 20px;
 }
 
-header > a{
-background: blue;
-}
-
-nav{
-  background: green;
-
-}
-
-nav ul li{
+header > *, header >  nav > ul > li{
   display: inline-block;
+  vertical-align: middle;
+}
+
+header ul{
+  padding-top: 8px;
+}
+
+header > nav > ul > li{
+  margin-left: 40px;
+}
+
+section.hero{
+  display:flex;
+  justify-content: space-between;
+  background-color: #1b1464;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='317' height='317' viewBox='0 0 200 200'%3E%3Cpolygon fill='%2300a6e2' points='100 0 0 100 100 100 100 200 200 100 200 0'/%3E%3C/svg%3E");
+  width: 100%;
+  height: 40vh;
+  padding: 32px 64px;
+}
+
+section.hero > *{
+  display: block;
+}
+
+.page-title{
+  flex-grow: .75;
+}
+
+.card{
+  width: 250px;
+  height: 90%;
+  background:#fff;
+  border-radius: 10px;
+  overflow :hidden;
+}
+
+.card img{
+  height: 50%;
+  width: 100%;
+}
+
+.card img ~ *{
+  margin:0 32px;
+}
+
+main.index{
+  min-height: 100vh;
+  background: #fff;
+}
+
+li a{
+  text-decoration: none;
+}
+
+li a:visited{
+  color: #1b1464;
+  text-decoration:none;
+}
+
+.navbar-brand img{
+  width: 54px;
+  height: auto;
+
 }
 
 nav ul li a{
   width: 100%;
   height: 100%;
+  font-size: 18px;
+}
+
+ul.user{
+
+}
+
+ul.user li{
+  display:inline-block;
+  vertical-align: middle;
+  margin-left: 16px;
 }
 
 /* activities */
@@ -55,6 +137,70 @@ nav ul li a{
   height: 10em;
 }
 
+section.loginform{
+  background:white;
+  width:25%;
+  min-width: 334px;
+  border-radius: 10px;
+  margin:64px auto;
+  padding: 32px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+
+form.login *, form.register * {
+  margin-bottom: 32px;
+}
+
+legend{
+  font-size: 2em;
+  font-weight: 800;
+}
+
+fieldset{
+  border:none;
+}
+
+form.login input, form.register input{
+  display: block;
+}
+
+input[type="text"], input[type="password"], input[type="email"]{
+  padding: 8px;
+  border-radius: 5px;
+  width: 100%;
+}
+
+input[type="submit"], a.CTA, a.CTA:visited{
+  padding: 8px 16px;
+  border-radius: 5px;
+  background:#fbb71c;
+  width: 50%;
+  border:none;
+  text-decoration: none;
+}
+
+a.CTA{
+  font-size: 1.5em;
+  max-width: 250px;
+  text-align: center;
+}
+
+footer{
+  position:absolute;
+  bottom: 0px;
+  display: block;
+  background: #fff;
+  min-height: 100px;
+  width: 100%;
+}
+
+footer p{
+  font-size: 14px;
+}
 
 @media screen and (max-width: 960px){
   nav ul li{

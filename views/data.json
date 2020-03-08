@@ -1,13 +1,16 @@
 [
   {
+    "id": 1,
     "name": "Wandelen",
     "day": "Maandag"
   },
   {
+    "id": 2,
     "name": "Fietsen",
     "day": "Dinsdag"
   },
   {
+    "id": 3,
     "name": "Zwemmen",
     "day": "Woensdag"
   }
