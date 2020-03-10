@@ -3,9 +3,31 @@
   <%- include ('../partials/head') %>
     <!-- header -->
   <%- include ('../partials/header') %>
-  <!-- activities -->
-  <main class='activity'>
-    <%- include ('../partials/activity') %>
-  </main>
-  <!-- footer -->
+
+<main>
+<!--  <h1>Index page </h1>
+  <p>With a little help of:</p>
+
+<ul>
+  <li>https://scotch.io/tutorials/use-ejs-to-template-your-node-application</li>
+  <li>https://ejs.co/</li>
+</ul>
+
+-->
+
+<section class="loginform">
+<%- include ('../partials/activityform') %>
+</section>
+
+<section>
+  <ul>
+    <% activiteiten.forEach(function(anyPrm){ %>
+      <li><%= anyPrm.activity_title + ' ' + anyPrm.org_name +  ' + anyPrm.date%></li>
+    <% }); %>
+  </ul>
+</section>
+
+</main>
+
+<!-- footer -->
   <%- include ('../partials/footer') %>
