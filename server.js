@@ -48,7 +48,7 @@ app
 
  app
   .post('/activiteiten',  (req,res) => {
-    console.log(this)
+
     // save Activity with promises
    const activityFormat = {
      activity_title: req.body.activity_title,
@@ -64,6 +64,7 @@ app
 
    runCode()
      .catch(error => { console.log(error)})
+
      res.redirect('/activiteiten')
  })
 

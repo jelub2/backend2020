@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+ <!-- head -->
+  <%- include ('../partials/head') %>
+    <!-- header -->
+  <%- include ('../partials/header') %>
+
+<main>
+  <section>
+    <h1>activiteit</h1>
+  </section>
+
+  <% activiteit.forEach(function(anyPrm){ %>
+    <section class="activitycard">
+        <img src="../assets/images/placeholder.jpg" alt="">
+      <ul>
+        <li><%= anyPrm.activity_title %></li>
+        <li><%= anyPrm.org_name %></li>
+        <li><%= anyPrm.date %></li>
+      </ul>
+    </section>
+  <% }); %>
+</main>
+
+<!-- footer -->
+  <%- include ('../partials/footer') %>

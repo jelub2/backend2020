@@ -5,6 +5,10 @@
   <%- include ('../partials/header') %>
 
 <main>
+  <section>
+    <h1>Activiteiten</h1>
+  </section>
+
 <!--  <h1>Index page </h1>
   <p>With a little help of:</p>
 
@@ -12,22 +16,26 @@
   <li>https://scotch.io/tutorials/use-ejs-to-template-your-node-application</li>
   <li>https://ejs.co/</li>
 </ul>
-
 -->
 
-<section class="loginform">
-<%- include ('../partials/activityform') %>
-</section>
 
-<section>
-  <ul>
-    <% activiteiten.forEach(function(anyPrm){ %>
-      <li><%= anyPrm.activity_title + ' ' + anyPrm.org_name +  ' + anyPrm.date%></li>
-    <% }); %>
-  </ul>
-</section>
 
+  <% activiteiten.forEach(function(anyPrm, index){  %>
+    <section class="activitycard">
+        <img src="assets/images/placeholder.jpg" alt="">
+      <ul>
+        <li><%= anyPrm.activity_title %></li>
+        <li><%= anyPrm.org_name %></li>
+        <li><%= anyPrm.date %></li>
+      </ul>
+      <a href="/activiteiten/<%= anyPrm._id%>">bekijk activiteit</a>
+    </section>
+  <% }); %>
 </main>
+
+<aside class="loginform">
+  <%- include ('../partials/activityform') %>
+</aside>
 
 <!-- footer -->
   <%- include ('../partials/footer') %>

@@ -17,13 +17,23 @@ routes// define routes
   .get('/',             parseLocalData/*(req, res) => /*{res.render('pages')}*/)
   .get('/user/:id',     (req, res) => {res.render('pages/users')})
   .get('/about',        (req, res) => {res.render('pages/about')})
-  .get('/users',        parseUserData)
   .get('/inlog',        (req, res) => {res.render('pages/inlog')})
   .get('/register',     (req, res) => {res.render('pages/register')})
   .get('/activiteiten', parseActivityData)
+  .get('/users',        parseUserData)
+  .get('/activiteiten/:_id', parseAcitivityDetail)
+
+async function parseAcitivityDetail (req,res) {
 
 
-function parseLocalData(req, res){
+
+    const activiteit = await Activity.find({_id: req.params})
+
+    res.render('pages/activiteitendetail', { activiteit:activiteit} )
+  }
+
+
+function parseLocalData (req, res){
   res.render('pages', {activiteiten: data});
 }
 
@@ -39,9 +49,10 @@ async function parseUserData (req, res){
 }
 //Load data from activities into /activities
 async function parseActivityData (req, res){
-  console.log(this);
-  const activiteiten = await Activity.find({});
 
+  const activiteiten = await Activity.find({}).limit(4);
+
+  console.log(activiteiten.length)
   try{
     res.render('pages/activiteiten', {activiteiten: activiteiten})
   } catch (err) {
