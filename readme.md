@@ -33,9 +33,9 @@ Theorie: DRY (Do not repeat yourself)
 
 ## week 6
 
-## Table of contents
+# Table of contents
 
-1. [Description of project](#Description of project)
+1. [Description of project](#Description-of-project)
 2. [Status](#Status)
 3. [Install](#Install)
 4. [Contact](#Contact)
