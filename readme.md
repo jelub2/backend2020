@@ -27,9 +27,10 @@ This project should be at a proof of concept level at the end of the project.
 - Add function to subscribe for a date
 
 # Install
-To run this project locally, clone this repo to a folder of your own preference.
+To run this project locally, `clone` this repo to a folder of your own preference.
 
-One way to make this work:
+> One way to make this work:  ...
+
 1. Create folder
 2. Open this folder in your terminal
 3. Enter "Git init"
@@ -37,13 +38,13 @@ One way to make this work:
 5. While still in this folder enter: "NPM Install"
  The project will be installed locally.
 
-In order to interact with the project it's needed to connect a MongoDB database to it. For example you could use a free MongoDB Atlas instance, which is an online database provided by MongoDB. Check out this page for more information: https://www.mongodb.com/cloud/atlas.
+In order to interact with the project it's needed to connect a MongoDB database to it. For example you could use a free `MongoDB Atlas` instance, which is an online database provided by MongoDB. Check out this page for more information: https://www.mongodb.com/cloud/atlas.
 
-When you got a MongoDB database running you can connect it to the project by adding a .env file to the project. In this file the following needs to be added:  
-MONGODB_URI = <url to database>  
+When you got a MongoDB database running you can connect it to the project by adding a `.env` file to the project. In this file the following needs to be added:  
+MONGODB_URI = `url to database`  
 Make sure the username and password of the database are in the url.
 
-Now you can run the project by entering "NPM Start" in the terminal. The project should run on: http://localhost:3000
+Now you can run the project by entering `NPM Start` in the terminal. The project should run on: http://localhost:3000
 
 # Contact
-By any issues, hints or improvements, please open a new issue at this repo.
+By any issues, hints or improvements, please open a new issue in this repository.
