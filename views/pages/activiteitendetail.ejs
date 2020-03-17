@@ -13,12 +13,30 @@
     <section class="activitycard">
         <img src="../assets/images/placeholder.jpg" alt="">
       <ul>
+        <li><%= anyPrm._id %></li>
         <li><%= anyPrm.activity_title %></li>
         <li><%= anyPrm.org_name %></li>
         <li><%= anyPrm.date %></li>
       </ul>
     </section>
   <% }); %>
+
+  <form class="login" action="/activiteitendetail" method="POST">
+    <fieldset>
+      <legend>Activiteit wijzigen:</legend>
+      <label for="activity_title">Name activity</label>
+      <input type="text" name="activity_title" value=<%=activiteit.activity_title%>>
+      <input type="submit" name="save" placeholder="">
+    </fieldset>
+  </form>
+
+  <button type="button" name="update"></button>
+
+  <p>
+    <button id=js-remove data-id="<%= activiteit.id %>" class=danger>
+      Remove
+    </button>
+  </p>
 </main>
 
 <!-- footer -->

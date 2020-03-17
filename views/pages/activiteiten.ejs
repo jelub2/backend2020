@@ -18,6 +18,16 @@
 </ul>
 -->
 
+<form class="login" action="/activiteiten" method="GET">
+  <fieldset>
+    <legend>Zoek</legend>
+    <label for="name">Zoekterm</label>
+    <input type="text" name="title" placeholder="name">
+  <input type="submit" name="save" placeholder="Log-in">
+  </fieldset>
+</form>
+
+<a href="/nieuwe_activiteit" style="color:white">Activiteit toevoegen</a>
 
 
   <% activiteiten.forEach(function(anyPrm, index){  %>
@@ -33,9 +43,6 @@
   <% }); %>
 </main>
 
-<aside class="loginform">
-  <%- include ('../partials/activityform') %>
-</aside>
 
 <!-- footer -->
   <%- include ('../partials/footer') %>
