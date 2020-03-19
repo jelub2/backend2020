@@ -7,18 +7,23 @@
 }
 
 body{
+  display:grid;
+  grid-template-columns: 15em auto;
+  grid-template-rows: auto;
   background-color: #00a6e2;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='79' height='79' viewBox='0 0 200 200'%3E%3Cpolygon fill='%231b1464' fill-opacity='0.54' points='100 0 0 100 100 100 100 200 200 100 200 0'/%3E%3C/svg%3E");
+  background-position: center;
+  background-attachment: fixed;
 }
 
 h1{
   font-size: 4em;
   color: #fff;
-  margin: 32px 0px;
 }
 
 h2{
   font-size: 2em;
+  color: #fff;
 }
 
 h3{
@@ -26,18 +31,17 @@ h3{
 }
 
 header{
+  grid-column: 1/2;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  position: fixed;
+  position:sticky;
   top:0;
-  left: 0;
   width: 15em;
   height: 100vh;
-  background: white;
+  background: rgba(255, 255, 255, 0.9);
   box-shadow: 1px 2px 10px 1px #525252;
   z-index: 1;
-  transition: all 1s;
 }
 /* add hover over header element */
 
@@ -75,10 +79,51 @@ header >  nav > ul > li > a:hover::before{
   left: 0px;
 }
 
+.user{
+  margin-bottom: 32px
+}
+
+.user li{
+  width: 80%;
+  background: #febc06;
+  margin: auto;
+  text-decoration: none;
+  border: 2px solid rgba(255, 255, 255, 0);
+  border-radius: 5px;
+  transition: border 1s, background .2s;
+}
+
+.user li:hover{
+  background: #fff;
+  border: 2px solid #febc06;
+  transition: border 1s, background .2s;
+}
+
+.user li a{
+  display: block;
+  padding: 8px 16px;
+  width: 100%;
+  height: 100%;
+}
+
 .navbar-brand{
   width: 100%;
   height: auto;
   padding: 10%;
+}
+
+.searchAdd{
+  background: white;
+  padding: 64px;
+}
+
+.searchAdd h1{
+  color: #000;
+}
+
+.activityList{
+ width: 75%;
+ margin: 0 auto;
 }
 
 aside{
@@ -111,6 +156,10 @@ section.hero > *{
 
 .page-title{
   flex-grow: .75;
+}
+
+ul li{
+    list-style-type: none;
 }
 
 li a{
@@ -198,11 +247,13 @@ a.CTA{
   text-align: center;
 }
 
-main, footer{
-  padding-left: 15em;
+main{
+  grid-column: 2/3;
 }
 
+
 footer{
+  grid-column: 2/3;
   position: relative;
   bottom: 0px;
   display: sticky;

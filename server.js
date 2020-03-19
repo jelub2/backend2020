@@ -4,10 +4,26 @@ const app         = express();
 const port        = process.env.PORT || 3000;
 const fs          = require('fs');
 const bodyParser  = require('body-parser')
+const mongoose    = require('mongoose');
 const routes      = require('./routes/routes')
-const db          = require('./models/mongodb')
-const User        = require('./models/user')
-const Activity    = require('./models/activity')
+
+
+//Connect with MongoDB
+require('dotenv').config()
+
+const mongoDB = process.env.MONGODB_URI //mongoDB URL in .env file
+
+mongoose.connect(mongoDB, {useNewUrlParser:true, useUnifiedTopology: true})
+
+//check Connection
+const db = mongoose.connection
+db.once('open', _ => {
+  console.log('Database connected:', 'url')
+})
+db.on('error', err => {
+  console.error('connection error:', 'url')
+})
+
 
 app
   .set('view engine', 'ejs')//set the view template engine to ejs

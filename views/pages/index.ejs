@@ -2,18 +2,10 @@
  <!-- head -->
   <%- include ('../partials/head') %>
     <!-- header -->
+
   <%- include ('../partials/header') %>
 
 <main class="index">
-<!--  <h1>Index page </h1>
-  <p>With a little help of:</p>
-
-<ul>
-  <li>https://scotch.io/tutorials/use-ejs-to-template-your-node-application</li>
-  <li>https://ejs.co/</li>
-</ul>
-
--->
 
 <section class="hero left">
   <div class="page-title">
@@ -34,6 +26,21 @@
   <img src="assets/images/placeholder.png" alt="">
       <h3>Dine</h3>
   </div>
+</section>
+
+<section class="activityList">
+  <h2>uitgelicht</h2>
+  <% activiteiten.forEach(function(anyPrm, index){  %>
+  <section class="activitycard">
+    <img src="assets/images/placeholder.jpg" alt="">
+    <ul>
+      <li><%= anyPrm.activity_title %></li>
+      <li><%= anyPrm.org_name %></li>
+      <li><%= anyPrm.date %></li>
+    </ul>
+    <a href="/activiteiten/<%= anyPrm._id%>">bekijk activiteit</a>
+  </section>
+  <% }); %>
 </section>
 </main>
 

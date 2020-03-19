@@ -1,15 +1,12 @@
 <!DOCTYPE html>
- <!-- head -->
-  <%- include ('../partials/head') %>
-    <!-- header -->
-  <%- include ('../partials/header') %>
+<!-- head -->
+<%- include ('../partials/head') %>
+<!-- header -->
+<%- include ('../partials/header') %>
 
 <main>
-  <section>
-    <h1>Activiteiten</h1>
-  </section>
 
-<!--  <h1>Index page </h1>
+  <!--  <h1>Index page </h1>
   <p>With a little help of:</p>
 
 <ul>
@@ -17,32 +14,36 @@
   <li>https://ejs.co/</li>
 </ul>
 -->
+  <section class="searchAdd">
+    <h1>Activiteiten</h1>
 
-<form class="login" action="/activiteiten" method="GET">
-  <fieldset>
-    <legend>Zoek</legend>
-    <label for="name">Zoekterm</label>
-    <input type="text" name="title" placeholder="name">
-  <input type="submit" name="save" placeholder="Log-in">
-  </fieldset>
-</form>
+    <form class="login" action="/activiteiten" method="GET">
+      <fieldset>
+        <legend>Zoek</legend>
+        <input type="text" name="title" placeholder="name">
+        <input type="submit" name="save" placeholder="Log-in">
+      </fieldset>
+    </form>
 
-<a href="/nieuwe_activiteit" style="color:white">Activiteit toevoegen</a>
+    <a href="/nieuwe_activiteit" style="color:white">Activiteit toevoegen</a>
 
-
+  </section>
+<section class="activityList">
   <% activiteiten.forEach(function(anyPrm, index){  %>
-    <section class="activitycard">
-        <img src="assets/images/placeholder.jpg" alt="">
-      <ul>
-        <li><%= anyPrm.activity_title %></li>
-        <li><%= anyPrm.org_name %></li>
-        <li><%= anyPrm.date %></li>
-      </ul>
-      <a href="/activiteiten/<%= anyPrm._id%>">bekijk activiteit</a>
-    </section>
+  <section class="activitycard">
+    <img src="assets/images/placeholder.jpg" alt="">
+    <ul>
+      <li><%= anyPrm.activity_title %></li>
+      <li><%= anyPrm.date %></li>
+      <li><%= anyPrm.org_name %></li>
+    </ul>    
+    <a href="/activiteiten/<%= anyPrm._id%>">bekijk activiteit</a>
+  </section>
   <% }); %>
+
+</section>
 </main>
 
 
 <!-- footer -->
-  <%- include ('../partials/footer') %>
+<%- include ('../partials/footer') %>
