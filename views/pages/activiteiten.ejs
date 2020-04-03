@@ -16,7 +16,6 @@
 -->
   <section class="searchAdd">
     <h1>Activiteiten</h1>
-
     <form class="login" action="/activiteiten" method="GET">
       <fieldset>
         <legend>Zoek</legend>
@@ -36,7 +35,7 @@
       <li><%= anyPrm.activity_title %></li>
       <li><%= anyPrm.date %></li>
       <li><%= anyPrm.org_name %></li>
-    </ul>    
+    </ul>
     <a href="/activiteiten/<%= anyPrm._id%>">bekijk activiteit</a>
   </section>
   <% }); %>

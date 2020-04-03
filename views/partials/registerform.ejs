@@ -1,15 +1,35 @@
 <form class="register" action="/register" method="POST">
   <fieldset>
   <legend>Registreren</legend>
+  <%- include ('../partials/messages') %>
   <label for="name">Your Name</label>
-  <input type="text" name="name" placeholder="name">
+  <input
+    type="text"
+    name="name"
+    placeholder="name"
+    value= "<%= typeof name != 'undefined' ? name: ''%>">
   <label for="Name">Your email</label>
-  <input type="email" name="email" placeholder="E-mail">
+  <input
+    type="email"
+    name="email"
+    placeholder="E-mail"
+    value= "<%= typeof email != 'undefined' ? email: ''%>">
   <label for="password">Wachtwoord</label>
-  <input type="password" name="password" placeholder="Wachtwoord">
-  <label for="repeatPassword">Herhaal wachtwoord</label>
-  <input type="password" name="repeatPassword" placeholder="Wachtwoord">
-  <input type="submit" name="save" placeholder="Registreer">
+  <input
+    type="password"
+    name="password"
+    placeholder="Wachtwoord"
+    value= "<%= typeof password != 'undefined' ? password: ''%>">
+  <label for="password2">Herhaal wachtwoord</label>
+  <input
+    type="password"
+    name="password2"
+    placeholder="Wachtwoord"
+    value=  "<%= typeof password2 != 'undefined' ? password2: ''%>">
+  <input
+    type="submit"
+    name="save"
+    placeholder="Registreer">
   </fieldset>
 </form>
 <!-- Sources -->

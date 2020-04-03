@@ -1,20 +1,17 @@
-const express   = require('express');
-const routes    = express.Router();
-const fs          = require('fs');
+// npm packages
+const express     = require('express')
+const routes      = express.Router()
 const bodyParser  = require('body-parser')
-const mongoose    = require('mongoose');
-const format    = require('date-format')
-const data      = require('../views/data.json') //local data in JSON
-const User      = require('../models/user')
-const Activity  = require('../models/activity')
-
-// configure body-parser to use Post requests
-routes
-  .use(bodyParser.urlencoded({ extended: true }))
-  .use(bodyParser.json());
+const bcrypt      = require('bcryptjs')
+const passport    = require('passport')
+const mongoose    = require('mongoose')
+// own files
+const data        = require('../views/data.json') //local data in JSON
+const User        = require('../models/user')
+const Activity    = require('../models/activity')
 
 //routes
-routes //check client request for fun
+routes //check client req for fun
   .use((req, res, next) => {
     // console.log('Time: ', Date.now())
     console.log(req.method + " " + req.originalUrl)
@@ -25,7 +22,7 @@ routes// GET method
   .get('/',             parseLocalData/*(req, res) => /*{res.render('pages')}*/)
   .get('/user/:id',     (req, res) => {res.render('pages/users')})
   .get('/about',        (req, res) => {res.render('pages/about')})
-  .get('/inlog',        (req, res) => {res.render('pages/inlog')})
+  .get('/login',     (req, res) => {res.render('pages/login')})
   .get('/register',     (req, res) => {res.render('pages/register')})
   .get('/activiteiten', activityData)
   .get('/activiteiten/:_id', parseActivityDetail)
@@ -34,19 +31,22 @@ routes// GET method
 
 routes// POST method
   .post('/register', register)
+  .post('/login', login)
   .post('/activiteiten', newActivity)
-  .post('/activiteitendetail', updateActivity)
+
+routes
+  .post('/activiteiten/*',  updateActivity)
+
+routes
+  .post('/activiteiten/:_id', deleteActivity)
 
 // GET method functions
 
 function parseActivityDetail (req,res) {
-
       let activiteit = Activity.find({_id: req.params})
-
-      activiteit
-      .then((result) => {
+        .then((activiteit) => {
         try {
-            res.render('pages/activiteitendetail', { activiteit: result} )
+            res.render('pages/activiteitendetail', {activiteit, link:"/activiteiten/"+req.params._id} )
         }  catch (err) {
             res.status(500).send(err);
         }
@@ -103,26 +103,64 @@ function parseUserData (req, res){//Load data from users into /users
 //POST-method Functions
 
 function register (req,res){
+  const {name, email, password, password2} = req.body
+  let errors = []
 
-    // save User with promises
-   const userFormat = new User({
-     _id: mongoose.Types.ObjectId(),
-     name: req.body.name,
-     email: req.body.email,
-     password: req.body.password
-   })
+  if(!name || !email || !password || !password2) {
+    errors.push({ msg: 'not all fields are filled in'})
+  }
 
-    userFormat.save()
-    .then((result) => {
-      res.render('pages/')
-      })
-     .catch(err => {
-       console.log(err);
-     })
+  if(password !== password2){
+    errors.push({msg: 'Paswords do not match'})
     }
 
-function newActivity(req, res){
+    if(password.length < 6 ) {
+      errors.push({msg: 'Password must be at least 6 characters'})
+    }
 
+    if(errors.length > 0){
+      res.render('pages/register', {
+        errors, name, email
+      })
+    } else
+
+    User.findOne({ email: email}) // check if user already exists by e-mail
+       .then(user => {
+         errors.push({msg: 'Email is already registered'})
+         if(user){
+           res.render('pages/register', {
+             errors, name, email
+          })} else {
+              const newUser = new User({
+               name,
+               email,
+               password
+          })
+
+          console.log(newUser.password)
+          
+          const hash = bcrypt.hashSync(newUser.password, 10)
+          newUser.password = hash
+          console.log(newUser)
+          console.log(newUser.password)
+          newUser.save()
+            .then( user => {
+                req.flash('success_msg', 'You are now registered and can log in')
+                  res.redirect('login')
+                })
+            }
+        })
+  }
+
+ function login (req, res, next) {
+   passport.authenticate('local', {
+     successRedirect: '/activiteiten',
+     failureRedirect: '/login',
+     failureFlash: true
+   })(req, res, next)
+}
+
+function newActivity(req, res){
   // save Activity with promises
  const activityFormat = new Activity({
    _id: mongoose.Types.ObjectId(),
@@ -136,14 +174,35 @@ function newActivity(req, res){
     console.log(result);
     res.render('pages/about')
     })
-   .catch(err => {
+   .catch((err) => {
      console.log(err);
    })
-     // drop collection await Activity.deleteMany({})
-   }
+}
 
-function updateActivity(req, res){ // async function, because otherwise it would redirect before updating the tables
+// Source:
+// Henri. E. (2019) building-restful-apis-with-node-js-and-express. geraadpleegd op 24-3-2020 via https://www.linkedin.com/learning/building-restful-apis-with-node-js-and-express/create-delete-endpoint?u=2132228.
+// PUT method functions
 
- }
+function updateActivity(req, res){
+console.log("update")
+Activity.findOneAndUpdate({_id: req.params._id}, req.body, {new: true, useFindAndModify: false}, (err, activity) => {
+    if (err){
+      res.send(err)
+    }
+    (req,res) => res.redirect('/activiteiten')
+})};
+
+//DELETE method
+function deleteActivity(req, res){
+  console.log(req.body)
+  Activity.deleteOne({_id: req.params._id}, (err, activity) => {
+      if (err){
+        res.send(err)
+      }
+      res.json({ message: 'succesfully deleted contact'})
+  })
+};
+
+//End of source Henri. E.
 
 module.exports = routes;

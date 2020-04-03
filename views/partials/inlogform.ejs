@@ -1,11 +1,21 @@
-<form class="login" action="/activiteiten" method="POST">
+<form class="login" action="/login" method="POST">
   <fieldset>
     <legend>Log-in</legend>
-    <label for="name">Your Username or e-mail</label>
-    <input type="text" name="name" placeholder="name">
+    <%- include('../partials/messages') %>
+    <label for="email">E-mail</label>
+    <input
+      type="text"
+      name="email"
+      placeholder="name">
     <label for="password">Wachtwoord</label>
-    <input type="password" name="password" placeholder="password">
-  <input type="submit" name="save" placeholder="Log-in">
+    <input
+      type="password"
+      name="password"
+      placeholder="password">
+    <input
+      type="submit"
+      name="save"
+      placeholder="Log-in">
   </fieldset>
 </form>
 <!-- Sources -->
