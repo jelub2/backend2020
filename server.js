@@ -1,3 +1,6 @@
+//https://www.youtube.com/watch?v=6FOq4cUdH8k
+// Had a lot of help from Traversy Media with register, hash password, login and authentication.
+
 // server.js
 const express       = require('express')
 const app           = express();

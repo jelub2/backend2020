@@ -1,0 +1,32 @@
+<%- include ('../partials/head') %>
+<%- include ('../partials/header') %>
+<form class="login" action="/profile-edit" method="POST">
+  <fieldset>
+  <legend>Registreren</legend>
+    <%- include ('../partials/messages') %>
+  <label for="name">Your Name</label>
+  <input
+    type="text"
+    name="name"
+    placeholder="name"
+    value= "<%= user.name %>">
+  <label for="Name">Your email</label>
+  <input
+    type="email"
+    name="email"
+    placeholder="E-mail"
+    value= "<%= user.email%>">
+  <label for="password">Wachtwoord ter controle</label>
+  <input
+    type="password"
+    name="password"
+    placeholder="Wachtwoord"
+    value= "">
+  <input
+    type="submit"
+    name="save"
+    placeholder="Registreer">
+  </fieldset>
+</form>
+<%- include ('../partials/footer') %>
+</body>
